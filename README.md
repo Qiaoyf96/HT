@@ -2,13 +2,20 @@
 
 This repo provides the Hybrid Thresholding (HT) checkpoints and [PISA](https://github.com/pisa-engine/pisa) indexes proposed in the paper "Representation Sparsification with Hybrid Thresholding for Fast SPLADE-based Document Retrieval".
 
+## Data
+
+The model checkpoints of HT1 and HT3, and the pre-built PISA index are available from [here](https://drive.google.com/drive/folders/1OpHiHX1cucjTfZMce0-irsas8tN0O52Q?usp=sharing).
+
 ## Evaluate
+
+To run the search program, please build [PISA](https://github.com/pisa-engine/pisa). After obtaining `evaluate_queries` and `queries` binaries, HT indexes can be queried using the following commands.
+
 ```
 # calculate the relevance in parallel
-./evaluate_queries -e block_simdbp -i splade-ht1.index -w splade-ht1.wand -q msmarco_dev.queries -k 10 -a maxscore --weighted -s quantized --documents msmarco.lex > msmarco_dev.trec
+./evaluate_queries -e block_simdbp -i splade-ht1.index -w splade-ht1.wand -q splade-ht1.queries -k 10 -a maxscore --weighted -s quantized --documents msmarco.lex > msmarco_dev.trec
 
 # measure the latency in single thread
-./queries -e block_simdbp -i splade-ht1.index -w splade-ht1.wand -q msmarco_dev.queries -k 10 -a maxscore --weighted -s quantized
+./queries -e block_simdbp -i splade-ht1.index -w splade-ht1.wand -q splade-ht1.queries -k 10 -a maxscore --weighted -s quantized
 ```
 
 ## Reference
